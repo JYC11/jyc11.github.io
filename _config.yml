@@ -1,0 +1,15 @@
+title: Your Blog Title
+description: A brief description of your blog
+theme: minima
+author: Your Name
+permalink: /blog/:year/:month/:day/:title
+
+# Social links (optional)
+twitter_username: your-twitter-handle
+github_username:  your-github-username
+
+# Build settings
+markdown: kramdown
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
