@@ -1,7 +1,7 @@
 ---
 layout: home
-title: Welcome to My Blog
+title: Landing page but not the superhero 3 point landing kind
 ---
 
-# Welcome to My Blog
-This is the landing page for my GitHub Pages blog.
+### I post things here
+Don't stay here. Go click a blog post.
