@@ -1,6 +1,6 @@
 ---
 layout: home
-title: Landing page but not the superhero 3 point landing kind
+title: Stop reading the title, look below
 ---
 
 ### I post things here
