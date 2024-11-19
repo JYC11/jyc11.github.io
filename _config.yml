@@ -1,7 +1,7 @@
-title: Your Blog Title
-description: A brief description of your blog
+title: Smart and Witty Blog Title
+description: A blog where I post stuff
 theme: minima
-author: Your Name
+author: Jaeyoon Cho
 permalink: /blog/:year/:month/:day/:title
 
 github_username:  JYC11
