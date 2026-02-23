@@ -6,6 +6,8 @@ permalink: /blog/:year/:month/:day/:title
 
 github_username:  JYC11
 
+future: true
+
 # Build settings
 markdown: kramdown
 plugins:
