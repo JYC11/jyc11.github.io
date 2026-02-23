@@ -74,7 +74,7 @@ Even as I heard good things about using LLMs for projects, I was never really ab
 
 ## Progress Log
 
-I've also started keeping ADRs (Architecture Decision Records) in the repo to capture the why behind technical choices, and tagging milestones like v0.1-identity-auth so I can easily diff what changed between blog posts.
+I've also started keeping ADRs (Architecture Decision Records) in the repo to capture the why behind technical choices, and tagging milestones like `v0.1-identity-auth` so I can easily diff what changed between blog posts.
 
 ---
 
