@@ -72,6 +72,12 @@ Even as I heard good things about using LLMs for projects, I was never really ab
 
 ---
 
+## Progress Log
+
+I've also started keeping ADRs (Architecture Decision Records) in the repo to capture the why behind technical choices, and tagging milestones like v0.1-identity-auth so I can easily diff what changed between blog posts.
+
+---
+
 ## What's next
 
 In Part 2, I want to push Koupang further, I plan to work on the catalog service next, and see if the LLM can keep up as the codebase grows. Stay tuned.
