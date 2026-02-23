@@ -13,6 +13,8 @@ I originally used the web interfaces (ChatGPT, Gemini, Claude, Qwen, Deepseek) t
 
 After a while of deliberation, I decided to give this LLM thing an actual shot. Far too many people around me as well as people I've seen on Youtube have said that the industry is changing. From the 2 possible futures (software engineering industry changes fundamentally OR it doesn't), I just decided to give in to what seems like changing tides. I set out to challenge my own assumptions — mainly that LLMs are bad at dealing with large complex codebases and are only good at basic programming tasks.
 
+Another sentiment I kept hearing was from staff-level and above engineers (via Reddit and YouTube) that LLMs boosted their productivity by a lot and they almost no longer code by hand. I imagine that very experienced engineers deal with far more difficult, larger and nebulous problems that require a lot of thought, planning and task subdivision — which are exactly what you need to do to use LLMs effectively from what I've heard. Considering that I am quite early career and don't deal with such difficult issues, I may not have such a large productivity boost with LLMs. So I figured the best way to understand why all these more experienced engineers are lauding LLMs was to try something larger and more difficult myself.
+
 ---
 
 ## The experiment
@@ -36,6 +38,7 @@ And so far... Claude seems to be doing really well. The first thing I worked on 
 - The code produced by LLMs is not crazy spaghetti
   - It's not perfect code and I have to suggest better abstractions and pulling code out into the common shared package often but that's fine
 - It's surprisingly good at handling niche crates like testcontainers and tonic/prost, which I'm pretty sure don't have a huge amount of usage data. My assumption about lack of training data is being slowly chipped away.
+- I did barely any coding by hand.
 
 ---
 
@@ -60,6 +63,12 @@ Nothing fancy yet and no multiple sub-agents:
 
 - Create Skills meta skill from Anthropic
 - Beads Rust skill that I made Claude create
+
+---
+
+## Why write about it
+
+Even as I heard good things about using LLMs for projects, I was never really able to see the outcomes. Most people work on closed source codebases at their jobs, so I couldn't see the actual code being produced or how they had their tools set up — the prompting strategies, the configurations, the actual workflow. So this blog post is my attempt at showing the process for others who may be skeptical or curious. If there are transparent examples (actual complex codebases and well documented workflows), please let me know. I am eager to learn.
 
 ---
 
