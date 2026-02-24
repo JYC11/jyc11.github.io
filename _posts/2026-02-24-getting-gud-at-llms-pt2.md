@@ -483,6 +483,13 @@ to specify, I meant keyset pagination. update the bead about pagination
 
 ---
 
+## Git Tag
+
+- `v0.2-catalog-crud`
+- This is the new tag that has been create for the latest amount of code that got generated.
+
+---
+
 ## What's next
 
 In Part 3, I want to push into the more complex services — starting with orders — and see if my predictions about LLM struggles hold up.
