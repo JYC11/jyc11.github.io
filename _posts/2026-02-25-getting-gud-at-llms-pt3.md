@@ -154,6 +154,12 @@ Now that LLMs are here to automate the act of writing code itself, I don't know 
 
 \* Looking back now I understand why work was done that way(making interns do spreadsheet manual labour) but I still hate it with a great passion
 
+## Git Tag
+
+- `v0.3-catalog-complete`
+
+---
+
 ## What's next
 
 The 4 plans are created and waiting for review. Next is implementing them in order — shared infrastructure first (Kafka, outbox, tracing), then cart, then order+payment. This is where the real test begins.
