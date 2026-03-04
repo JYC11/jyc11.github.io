@@ -46,7 +46,7 @@ There is quite a lot to cover so I got Claude to summarize the interactions I ha
 
 Copied the Makefile and util-scripts from Koupang as a starting point. Wrote 6+ Architecture Decision Records. Key decisions made: messages are NOT graph nodes (separate inbox/outbox pattern), file reservations and agent runs also not graph nodes, single-binary architecture (installable via `curl` not just `cargo`), and per-project `.filament/` directory with local SQLite + Unix socket.
 
-<details>
+<details markdown="1">
 <summary>Prompts</summary>
 
 ```
@@ -77,7 +77,7 @@ let's do single-binary because I want it to be installable via curl as well, not
 
 Researched beads_rust's JSONL/flush design for comparison. Implemented the core library: models, errors, schema, store, graph, connection, protocol. Value objects (Priority, Weight, NonEmptyString) to make invalid states unrepresentable. Code review + test review against the test guide, marked Phase 1 complete.
 
-<details>
+<details markdown="1">
 <summary>Prompts</summary>
 
 ```
@@ -104,7 +104,7 @@ look through the codebase and see if there are more opportunities to use value o
 
 Two rounds of code review — found 3 bugs, made 4 improvements. Added ADR-018 for value types/newtypes. Created a gotchas document since the project was already accumulating pitfalls (sqlx custom newtypes, thiserror v2 `source` field behavior, petgraph 0.7 API changes).
 
-<details>
+<details markdown="1">
 <summary>Prompts</summary>
 
 ```
@@ -131,7 +131,7 @@ let's do another code review over phase 1 just in case
 
 Switched back to Koupang briefly. Did a code review of the outbox implementation, fixed 8 issues. Then reviewed the shared module, found and fixed 9 more issues. Context window ran out mid-session.
 
-<details>
+<details markdown="1">
 <summary>Prompts</summary>
 
 ```
@@ -158,7 +158,7 @@ let's fix them all 1 to 9
 
 Implemented all CLI commands: entity, task, relation, query, message, reserve. 27 integration tests. This was one of the fastest phases — two sessions, plan then execute.
 
-<details>
+<details markdown="1">
 <summary>Prompts</summary>
 
 ```
@@ -177,7 +177,7 @@ Implement the following plan: Phase 2: CLI Implementation Plan...
 
 Two code review rounds — fixed 5 bugs, 3 architecture improvements, 18 new tests. Created a manual QA skill in `.claude/skills/` for structured end-to-end testing. Ran 50 manual test cases. Decided on dual-track project management: keep `.md` files as committed source of truth AND use filament's own knowledge graph for live tracking.
 
-<details>
+<details markdown="1">
 <summary>Prompts</summary>
 
 ```
@@ -204,7 +204,7 @@ the test results should have date-time in the file name as well in case of multi
 
 Implemented Unix socket daemon with NDJSON protocol. 9 daemon integration tests. CLI now routes through daemon when running, falls back to direct DB access otherwise.
 
-<details>
+<details markdown="1">
 <summary>Prompts</summary>
 
 ```
@@ -227,7 +227,7 @@ Implement the following plan: Phase 3: Daemon Implementation Plan...
 
 This is where things got interesting. Manual QA of the daemon revealed that neither `create_entity` nor `update_entity_status` were creating events — the store layer just didn't do it. I accidentally deleted the tmp directory at one point. Started using filament to track its own tasks (dogfooding). Refactored the daemon handler "god function" into 7 domain sub-modules. Added multi-agent concurrency tests.
 
-<details>
+<details markdown="1">
 <summary>Prompts</summary>
 
 ```
@@ -254,7 +254,7 @@ I want you to add test cases of cli connecting to the daemon for multiple agents
 
 Handler refactoring and code review of Phase 3. Deduplicated gotchas from MEMORY.md into a proper gotchas document + filament knowledge graph. Context window ran out during this — had to continue from summary.
 
-<details>
+<details markdown="1">
 <summary>Prompts</summary>
 
 ```
@@ -273,7 +273,7 @@ I want you to deduplicate some content in .md files. In memory.md there are a bu
 
 Planned and implemented MCP server using the `rmcp` crate — 12 tools via stdio transport. Code audit: removed dead code, fixed clippy warnings, added 4 new MCP tools. Manual QA of MCP implementation.
 
-<details>
+<details markdown="1">
 <summary>Prompts</summary>
 
 ```
@@ -300,7 +300,7 @@ let's do some manual testing of the mcp implementation
 
 This was the biggest cross-cutting change. Identified the name collision problem — entities were looked up by name which could overlap. Switched to 8-char base36 slug identity (ADR-019). Then refactored `Entity` from a flat struct to a tagged enum (`Task | Module | Service | Agent | Plan | Doc`) with typed variants and `TypeMismatch` errors for compile-time safety (ADR-020). Then further type-safety improvements, replacing runtime `is_task()` checks with pattern matching.
 
-<details>
+<details markdown="1">
 <summary>Prompts</summary>
 
 ```
@@ -327,7 +327,7 @@ the features require task and knowledge graph management both but it seems that 
 
 Implemented the dispatch engine: spawn subprocess via `std::process`, monitor via `tokio::spawn`, parse `AgentResult` JSON, route messages, death cleanup (revert task, release reservations, refresh graph). Agent roles: Coder, Reviewer, Planner, Dockeeper with compiled-in prompts and tool whitelists. 23 new tests.
 
-<details>
+<details markdown="1">
 <summary>Prompts</summary>
 
 ```
@@ -350,7 +350,7 @@ let's do the next priorities that are in MEMORY.md
 
 The most complex debugging session. The dispatch engine had a child reaping race condition — when the server batched multiple agent dispatches, child processes could be reaped by the wrong handler. Fix: `std::process` + remove server-side batch dispatch, CLI `dispatch-all` now loops individual `dispatch_agent` RPCs instead.
 
-<details>
+<details markdown="1">
 <summary>Prompts</summary>
 
 ```
@@ -365,7 +365,7 @@ let's fix the P1 bug and before you do, explain to me the dispatch code logic/ov
 
 Implemented ratatui-based TUI with task, agent, and reservation views. 7 TUI tests. Fastest phase to implement.
 
-<details>
+<details markdown="1">
 <summary>Prompts</summary>
 
 ```
@@ -384,7 +384,7 @@ Implement the following plan: Phase 5: TUI Implementation Plan...
 
 Phase 5 code review fixed N+1 query patterns in both CLI and TUI. Created `batch_get_entities` API in core to eliminate them. Then a comprehensive code smell analysis: where to use ADTs/value objects to make illegal states unrepresentable, where to simplify code. Created a 15-task code review plan. Completed all items: type-strengthened DTOs, CLI args, dedup utils, broke a bidirectional dependency.
 
-<details>
+<details markdown="1">
 <summary>Prompts</summary>
 
 ```
@@ -408,7 +408,7 @@ fix the bugs and code smells from session34 in .plan
 
 Switched back to Koupang again late at night. Added development rules to Koupang's CLAUDE.md and had a discussion about code style preferences — god functions vs overly fragmented code. Then explored what additional subagents/skills/MCP tools would help Claude be more autonomous. Did some housekeeping on context-affecting `.md` files.
 
-<details>
+<details markdown="1">
 <summary>Prompts</summary>
 
 ```
@@ -435,7 +435,7 @@ should we do some housekeeping on the context affecting .md files?
 
 Wrote a comprehensive README with installation and usage guide. Added MIT license and an inspiration section crediting beads_rust and Flywheel. Planned aggressive QA rounds targeting concurrency, state corruption, and edge cases. Pushed to GitHub.
 
-<details>
+<details markdown="1">
 <summary>Prompts</summary>
 
 ```
