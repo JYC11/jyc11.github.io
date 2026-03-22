@@ -5,7 +5,7 @@ date: 2026-03-04
 categories: blog
 ---
 
-In [Part 4](/blog/2026/02/25/getting-gud-at-llms-pt4.html), I finished planning for the big order orchestration saga and then started implementing. I am in the middle of implementing it but I decided to go on a little side quest. Things were getting complacent and I wanted to shake things up.
+In [Part 4](/blog/2026/02/26/getting-gud-at-llms-pt4.html), I finished planning for the big order orchestration saga and then started implementing. I am in the middle of implementing it but I decided to go on a little side quest. Things were getting complacent and I wanted to shake things up.
 
 ---
 
